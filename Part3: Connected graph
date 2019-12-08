@@ -1,0 +1,59 @@
+#include <iostream>
+#include <list>
+#include <vector>
+using namespace std;
+class Graph{
+	int v; //no. of vertices
+	list<int>* adjList;
+	vector<bool> visited;
+public:
+	Graph(int v):v(v), adjList(new list<int>[v]), visited(v,false){}
+	void addEdge(int v, int w){
+		adjList[v-1].push_back(w-1);
+		adjList[w-1].push_back(v-1);
+	}
+	bool is_visited(int i){return visited[i];}
+
+	void BFS(int s){
+		list<int>queue;
+		visited[s]=true;
+		queue.push_back(s);
+		list<int>::iterator i;
+		while(!queue.empty()){
+			s=queue.front();
+			queue.pop_front();
+			for(i=adjList[s].begin();i!=adjList[s].end();++i){
+				if(!visited[*i]){
+					cout<<*i+1;
+					visited[*i]=true;
+					queue.push_back(*i);
+
+				}
+			}
+		}
+	}
+
+};
+int main(){
+	Graph gdfs(8);
+	gdfs.addEdge(1,2);
+	gdfs.addEdge(1,3);
+	gdfs.addEdge(2,3);
+	gdfs.addEdge(2,4);
+	gdfs.addEdge(3,5);
+	gdfs.addEdge(4,6);
+	gdfs.addEdge(7,8);
+
+	cout << "connected graph:"<<endl;
+	for (int i=0;i<8;++i){
+		if(gdfs.is_visited(i)==false){
+			cout<<"group: "<<i+1;
+			gdfs.BFS(i);
+			cout<<endl;
+		}
+	}
+
+	return 0;
+	}
+
+
