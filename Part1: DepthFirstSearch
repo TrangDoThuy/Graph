@@ -8,6 +8,8 @@ Output:
 - Đường đi từ s tới f
 
 1. Thuật toán tìm kiếm theo chiều sâu: (depth first search)
+//
+- có thể có nhiều đường đi từ s tới f nhưng thuật toán DFS luôn trả về một đường đi có thứ tự từ điển nhỏ nhất
 //From https://www.softwaretestinghelp.com/cpp-dfs-program-to-traverse-graph/
 #include <iostream>
 #include <list>
